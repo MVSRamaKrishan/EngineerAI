@@ -1,0 +1,36 @@
+<h2>{{result}}</h2>
+
+<div>
+    <input type="text" [(ngModel)]="userName.title" placeholder="Enter Name">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td>Url</td>
+            <td>Author</td>
+            
+       </tr>
+
+        <tr *ngFor="let data of result|filterBy:userName" (click)="openModal(template)">
+            <td>data.title</td>
+            <td>data.url</td>
+            <td>data.author</td>
+
+            <ng-template #ngTemplate>
+                <div class="modal-header">
+                    <h2 class="modal-title">Modal</h2>
+                    <button type="button" class="pull-right" (click)="modalref.hide()">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button"  class="btn btn-secondary dropdown-toggle" (click)="modalref.hide()">
+                        <pre>{{data|json}}</pre>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="modalref.hide()">Close</button>
+                </div>
+
+            </ng-template>
+        </tr>
+    </table>
+</div>
